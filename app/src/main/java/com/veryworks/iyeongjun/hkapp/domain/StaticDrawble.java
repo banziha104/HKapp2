@@ -1,0 +1,43 @@
+package com.veryworks.iyeongjun.hkapp.domain;
+
+import com.veryworks.iyeongjun.hkapp.R;
+
+/**
+ * Created by iyeongjun on 2017. 11. 25..
+ */
+
+/*리소스 배열 파일*/
+public class StaticDrawble {
+    static public int[] typeImages = {
+            R.drawable.type_food,
+            R.drawable.type_park,
+            R.drawable.type_repo,
+            R.drawable.type_tour,
+            R.drawable.type_shop,
+            R.drawable.type_inn,
+            R.drawable.type_his
+    };
+
+    static public int[] typeClickImages = {
+            R.drawable.type_c_food,
+            R.drawable.type_c_park,
+            R.drawable.type_c_repo,
+            R.drawable.type_c_tour,
+            R.drawable.type_c_shop,
+            R.drawable.type_c_inn,
+            R.drawable.type_c_his
+    };
+    static public int[] sectionImages = {
+            R.drawable.section_gangnam,
+            R.drawable.section_gangdong,
+            R.drawable.section_gangseo,
+            R.drawable.section_guanzin,
+            R.drawable.section_dongjak,
+            R.drawable.section_mapo,
+            R.drawable.section_seocho,
+            R.drawable.section_sengdong,
+            R.drawable.section_songpa,
+            R.drawable.section_youngdungpo,
+            R.drawable.section_yongsan
+    };
+}
