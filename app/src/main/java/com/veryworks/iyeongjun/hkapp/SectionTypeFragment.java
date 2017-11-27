@@ -7,20 +7,16 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.veryworks.iyeongjun.hkapp.Interface.TypeAndSectionSwapInterface;
-import com.veryworks.iyeongjun.hkapp.Reactive.RxEventBus;
+import com.veryworks.iyeongjun.hkapp.EventDriven.RxEventBus;
 import com.veryworks.iyeongjun.hkapp.adapter.TypeAdapter;
 import com.veryworks.iyeongjun.hkapp.domain.Const;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnTouch;
 import butterknife.Unbinder;
 
 import static com.veryworks.iyeongjun.hkapp.domain.StaticFields.isTypeList;

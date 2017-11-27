@@ -14,14 +14,12 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.WindowManager;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.veryworks.iyeongjun.hkapp.Interface.TypeAndSectionSwapInterface;
-import com.veryworks.iyeongjun.hkapp.Reactive.RxEventBus;
-import com.veryworks.iyeongjun.hkapp.Reactive.RxPagerEventBus;
+import com.veryworks.iyeongjun.hkapp.EventDriven.RxEventBus;
+import com.veryworks.iyeongjun.hkapp.EventDriven.RxPagerEventBus;
 import com.veryworks.iyeongjun.hkapp.Util.UserLocation;
 import com.veryworks.iyeongjun.hkapp.adapter.PagerAdapter;
-import com.veryworks.iyeongjun.hkapp.domain.Const;
 import com.veryworks.iyeongjun.hkapp.domain.DataReceiver;
 
 import java.util.ArrayList;
@@ -31,12 +29,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTouch;
-import io.reactivex.subjects.PublishSubject;
 
 import static com.veryworks.iyeongjun.hkapp.domain.Const.FRAGMENT.LIST;
 import static com.veryworks.iyeongjun.hkapp.domain.Const.FRAGMENT.MAP;
 import static com.veryworks.iyeongjun.hkapp.domain.Const.FRAGMENT.SECTION_AND_TYPE;
 import static com.veryworks.iyeongjun.hkapp.domain.Const.FRAGMENT.TOUNAMENT;
+import static com.veryworks.iyeongjun.hkapp.domain.StaticDrawble.tabImage;
+import static com.veryworks.iyeongjun.hkapp.domain.StaticDrawble.tabSelectedImage;
 import static com.veryworks.iyeongjun.hkapp.domain.StaticFields.isTypeList;
 
 public class MainActivity extends AppCompatActivity
@@ -143,14 +142,10 @@ public class MainActivity extends AppCompatActivity
 
 //        Log.d("ARPOINT", currentUserLocation.getLatitude() + "/" + currentUserLocation.getLongitude());
 //
-//        tab.addTab(tab.newTab().setIcon(tabIcons[0]));
-//        tab.addTab(tab.newTab().setIcon(tabIcons[1]));
-//        tab.addTab(tab.newTab().setIcon(tabIcons[2]));
-//        tab.addTab(tab.newTab().setIcon(tabIcons[3]));
-        tab.addTab(tab.newTab().setText("a"));
-        tab.addTab(tab.newTab().setText("b"));
-        tab.addTab(tab.newTab().setText("c"));
-        tab.addTab(tab.newTab().setText("d"));
+        tab.addTab(tab.newTab().setIcon(tabSelectedImage[0]));
+        tab.addTab(tab.newTab().setIcon(tabImage[1]));
+        tab.addTab(tab.newTab().setIcon(tabImage[2]));
+        tab.addTab(tab.newTab().setIcon(tabImage[3]));
         List<Fragment> datas = new ArrayList<>();
 
         ListFragment listFragment = new ListFragment();
@@ -189,12 +184,12 @@ public class MainActivity extends AppCompatActivity
         tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tabs) {
-
+                tabs.setIcon(tabSelectedImage[tabs.getPosition()]);
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tabs) {
-
+                tabs.setIcon(tabImage[tabs.getPosition()]);
             }
 
             @Override

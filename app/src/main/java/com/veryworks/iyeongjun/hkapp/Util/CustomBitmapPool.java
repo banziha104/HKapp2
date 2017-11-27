@@ -9,6 +9,7 @@ import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
  */
 
 public class CustomBitmapPool implements BitmapPool {
+
     @Override
     public int getMaxSize() {
         return 0;

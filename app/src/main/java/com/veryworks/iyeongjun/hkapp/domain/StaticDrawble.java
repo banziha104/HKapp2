@@ -40,4 +40,17 @@ public class StaticDrawble {
             R.drawable.section_youngdungpo,
             R.drawable.section_yongsan
     };
+    static public int[] tabSelectedImage = {
+            R.drawable.tab_c_list,
+            R.drawable.tab_c_section_type,
+            R.drawable.tap_c_tour,
+            R.drawable.tab_c_map
+    };
+
+    static public int[] tabImage = {
+            R.drawable.tab_list,
+            R.drawable.tab_section_type,
+            R.drawable.tab_tour,
+            R.drawable.tab_map
+    };
 }

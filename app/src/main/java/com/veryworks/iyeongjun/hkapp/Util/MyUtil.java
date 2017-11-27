@@ -3,6 +3,8 @@ package com.veryworks.iyeongjun.hkapp.Util;
 import android.view.MotionEvent;
 import android.widget.ImageButton;
 
+import com.veryworks.iyeongjun.hkapp.R;
+
 import static com.veryworks.iyeongjun.hkapp.domain.Const.*;
 
 /**
@@ -64,6 +66,19 @@ public class MyUtil {
         else if(str == "유적지") result = ContentType.HIST;
         else if(str == "레포츠") result = ContentType.REPO;
         else if(str == "편의시설") result = ContentType.REST;
+        return result;
+    }
+
+    public static int convertTypeStringToPin(int num){
+        int result = R.drawable.park_pin;
+        if(num == ContentType.PARK) result = R.drawable.park_pin;
+        else if(num == ContentType.FOOD) result = R.drawable.food_pin;
+        else if(num == ContentType.TOUR) result = R.drawable.tour_pin;
+        else if(num == ContentType.SHOP) result = R.drawable.shop_pin;
+        else if(num == ContentType.INN) result = R.drawable.inn_pin;
+        else if(num == ContentType.HIST) result = R.drawable.his_pin;
+        else if(num == ContentType.REPO) result = R.drawable.repo_pin;
+        else if(num == ContentType.REST) result = R.drawable.repo_pin;
         return result;
     }
 }
