@@ -10,8 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.veryworks.iyeongjun.hkapp.Interface.TypeAndSectionSwapInterface;
 import com.veryworks.iyeongjun.hkapp.EventDriven.RxEventBus;
+import com.veryworks.iyeongjun.hkapp.Interface.TypeAndSectionSwapInterface;
 import com.veryworks.iyeongjun.hkapp.adapter.TypeAdapter;
 import com.veryworks.iyeongjun.hkapp.domain.Const;
 

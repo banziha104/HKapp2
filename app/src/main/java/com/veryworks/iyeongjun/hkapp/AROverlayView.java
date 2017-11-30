@@ -17,12 +17,16 @@ import com.veryworks.iyeongjun.hkapp.Interface.ImageSet;
 import com.veryworks.iyeongjun.hkapp.domain.ARPoint;
 import com.veryworks.iyeongjun.hkapp.domain.Const;
 import com.veryworks.iyeongjun.hkapp.domain.HKData;
+import com.veryworks.iyeongjun.hkapp.domain.Items;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static com.veryworks.iyeongjun.hkapp.Util.UserLocation.currentUserLocation;
+import static com.veryworks.iyeongjun.hkapp.domain.StaticFields.hkDatas;
 
 
 /**
@@ -53,6 +57,8 @@ public class AROverlayView extends View implements ARActivity.CheckView, ARActiv
         imageSet.setOutImage();
         imageSet.setInImage();
         imageSet.setOutImage();
+        currentLocation = currentUserLocation;
+        setArPoints(hkDatas.getItems());
         //Demo points
         arr = new boolean[arPoints.size()];
         temparr = new boolean[arPoints.size()];
@@ -159,26 +165,33 @@ public class AROverlayView extends View implements ARActivity.CheckView, ARActiv
                 }
         },0,1000);
     }
-    private void setArPoints(ArrayList<HKData> data){
-//        Random random = new Random();
-//        if(datas.size() > 20) page = 20;
-//        else page = datas.size();
-//        for(int i = 0 ; i < page ; i ++){
-//            int index = i+curPos;
-//            Item item = data.get(index);
-//            Log.d("A",index+"");
-//            ARPoint arPoint = new ARPoint(
-//                item.getTitle(),
-//                Double.parseDouble(item.getMapy()),
-//                Double.parseDouble(item.getMapx()),
-//                    ((double)(random.nextInt()%150))
-//            );
-//            arPoints.add(arPoint);
-//            Log.d("ARPOINT"
-//                    ,Double.parseDouble(item.getMapx())+"/"+
-//                    Double.parseDouble(item.getMapy())+"");
+    private void setArPoints(Items[] datas){
+        Random random = new Random();
+        Location mLocation;
+        ARPoint arPoint;
+        if(datas.length > 20) page = 20;
+        else page = datas.length;
+        for(Items item : datas){
+            mLocation = makeLocation(item);
+//            if(getDistance(mLocation) < 3.0){
+                arPoint = new ARPoint(
+                        item.getTitle(),
+                        Double.parseDouble(item.getLat()),
+                        Double.parseDouble(item.getLon()),
+                        ((double)(random.nextInt()%150)));
+                        Log.d("ARPOINT"
+                        ,Double.parseDouble(item.getLat())+"/"+
+                                Double.parseDouble(item.getLon())+"");
+                        arPoints.add(arPoint);
+            }
 //        }
-//        curPos += 20;
+    }
+    private Location makeLocation(Items item){
+        Location location = new Location("Location");
+        location.setLatitude(Double.parseDouble(item.getLat()));
+        location.setLongitude(Double.parseDouble(item.getLon()));
+        location.setAltitude(0.0);
+        return location;
     }
     private double getDistance(Location location){
         return ((int)(currentLocation.distanceTo(location)))/(1000.0);

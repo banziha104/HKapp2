@@ -1,17 +1,17 @@
 package com.veryworks.iyeongjun.hkapp.Util;
 
-import android.view.MotionEvent;
-import android.widget.ImageButton;
+import android.util.Log;
 
 import com.veryworks.iyeongjun.hkapp.R;
 
-import static com.veryworks.iyeongjun.hkapp.domain.Const.*;
+import static com.veryworks.iyeongjun.hkapp.domain.Const.ContentType;
+import static com.veryworks.iyeongjun.hkapp.domain.Const.SECTION;
 
 /**
  * Created by iyeongjun on 2017. 11. 3..
  */
 
-public class MyUtil {
+public class DataConverter {
 
     public static String convertSectionIntToString(int num){
         String result = "";
@@ -30,22 +30,32 @@ public class MyUtil {
         return result;
     }
     public static int convertSectionStringToInt(String str){
+
+        Log.d("LISTACTIVITY","conv+/"+str);
         int result = 0;
-        if(str == SECTION.GANGNAM.getName())       result = SECTION.GANGNAM.getPk();
-        else if (str == SECTION.GANGDONG.getName())result = SECTION.GANGNAM.getPk();
-        else if (str == SECTION.GANGSEO.getName()) result = SECTION.GANGSEO.getPk();
-        else if (str == SECTION.GUANJIN.getName()) result = SECTION.GUANJIN.getPk();
-        else if (str == SECTION.DONGJAK.getName()) result = SECTION.DONGJAK.getPk();
-        else if (str == SECTION.MAPO.getName())    result = SECTION.MAPO.getPk();
-        else if (str == SECTION.SEOCHO.getName())  result = SECTION.SEOCHO.getPk();
-        else if (str == SECTION.SENGDONG.getName())result = SECTION.SENGDONG.getPk();
-        else if (str == SECTION.SONGPA.getName())  result = SECTION.SONGPA.getPk();
-        else if (str == SECTION.YONGSAN.getName()) result = SECTION.YONGSAN.getPk();
-        else if (str == SECTION.YUNGDUNG.getName())result = SECTION.YUNGDUNG.getPk();
+        if(str.equals(SECTION.GANGNAM.getName()))       result = SECTION.GANGNAM.getPk();
+        else if (str.equals(SECTION.GANGDONG.getName()))result = SECTION.GANGNAM.getPk();
+        else if (str.equals(SECTION.GANGSEO.getName())) result = SECTION.GANGSEO.getPk();
+        else if (str.equals(SECTION.GUANJIN.getName())) result = SECTION.GUANJIN.getPk();
+        else if (str.equals(SECTION.DONGJAK.getName())) result = SECTION.DONGJAK.getPk();
+        else if (str.equals(SECTION.MAPO.getName()))    result = SECTION.MAPO.getPk();
+        else if (str.equals(SECTION.SEOCHO.getName()))  result = SECTION.SEOCHO.getPk();
+        else if (str.equals(SECTION.SENGDONG.getName()))result = SECTION.SENGDONG.getPk();
+        else if (str.equals(SECTION.SONGPA.getName()))  result = SECTION.SONGPA.getPk();
+        else if (str.equals(SECTION.YONGSAN.getName())) result = SECTION.YONGSAN.getPk();
+        else if (str.equals(SECTION.YUNGDUNG.getName()))result = SECTION.YUNGDUNG.getPk();
+
+        Log.d("LISTACTIVITY","conv1+/"
+                +result+"/"
+                + SECTION.GUANJIN.getName()
+                + "/"
+                + str
+                + "/"+ SECTION.GANGSEO.getPk());
         return result;
     }
     public static String convertTypeIntToString(int num){
         String result = "";
+        Log.d("LISTACTIVITY","conv+/"+num);
         if(num == ContentType.PARK) result ="공원";
         else if(num == ContentType.FOOD) result = "맛집";
         else if(num == ContentType.TOUR) result = "볼거리";
@@ -58,14 +68,14 @@ public class MyUtil {
     }
     public static int convertTypeStringToInt(String str) {
         int result = 0;
-        if(str == "공원") result = ContentType.PARK;
-        else if(str == "맛집") result = ContentType.FOOD;
-        else if(str == "볼거리") result = ContentType.TOUR;
-        else if(str == "쇼핑몰") result = ContentType.SHOP;
-        else if(str == "숙박") result = ContentType.INN;
-        else if(str == "유적지") result = ContentType.HIST;
-        else if(str == "레포츠") result = ContentType.REPO;
-        else if(str == "편의시설") result = ContentType.REST;
+        if(str.equals("공원")) result = ContentType.PARK;
+        else if(str.equals("맛집")) result = ContentType.FOOD;
+        else if(str.equals("볼거리")) result = ContentType.TOUR;
+        else if(str.equals("쇼핑몰")) result = ContentType.SHOP;
+        else if(str.equals("숙박") ) result = ContentType.INN;
+        else if(str.equals("유적지") ) result = ContentType.HIST;
+        else if(str.equals("레포츠")) result = ContentType.REPO;
+        else if(str.equals("편의시설") ) result = ContentType.REST;
         return result;
     }
 
@@ -81,4 +91,5 @@ public class MyUtil {
         else if(num == ContentType.REST) result = R.drawable.repo_pin;
         return result;
     }
+
 }

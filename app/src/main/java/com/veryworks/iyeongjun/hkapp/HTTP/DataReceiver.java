@@ -1,4 +1,4 @@
-package com.veryworks.iyeongjun.hkapp.domain;
+package com.veryworks.iyeongjun.hkapp.HTTP;
 
 
 /*데이터 로더 클래스*/
@@ -8,6 +8,9 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.veryworks.iyeongjun.hkapp.domain.Const;
+import com.veryworks.iyeongjun.hkapp.domain.HKData;
+import com.veryworks.iyeongjun.hkapp.domain.Items;
 
 import java.io.IOException;
 
@@ -16,15 +19,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
 
-import static com.veryworks.iyeongjun.hkapp.domain.StaticFields.*;
+import static com.veryworks.iyeongjun.hkapp.domain.StaticFields.hkDatas;
+import static com.veryworks.iyeongjun.hkapp.domain.StaticFields.isInitData;
 
 public class DataReceiver {
-    static Retrofit retrofit;
+    Retrofit retrofit;
     Context context;
     Gson gson;
     public DataReceiver(Context context) {
@@ -35,7 +36,7 @@ public class DataReceiver {
     /* DJango 서버에 저장된 한강 데이터를 가져옮 */
     public void getData(){
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://ec2-52-78-202-182.ap-northeast-2.compute.amazonaws.com:80")
+                .baseUrl(Const.NETWORK.SERVER_URL)
 //                .addConverterFactory(GsonConverterFactory.create())
                 .build();
         HKdataReceiveInterface hKdataReceiveInterface
@@ -56,6 +57,7 @@ public class DataReceiver {
                                 items[i].getImage()+" /"+
                                 items[i].getSection());
                     }
+                    isInitData[0] = true;
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

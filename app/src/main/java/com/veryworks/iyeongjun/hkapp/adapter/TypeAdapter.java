@@ -1,24 +1,22 @@
 package com.veryworks.iyeongjun.hkapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
+import com.veryworks.iyeongjun.hkapp.ListActivity;
 import com.veryworks.iyeongjun.hkapp.R;
 import com.veryworks.iyeongjun.hkapp.domain.Const;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.OnTouch;
 
 import static com.veryworks.iyeongjun.hkapp.domain.StaticDrawble.sectionImages;
-import static com.veryworks.iyeongjun.hkapp.domain.StaticDrawble.typeClickImages;
 import static com.veryworks.iyeongjun.hkapp.domain.StaticDrawble.typeImages;
 import static com.veryworks.iyeongjun.hkapp.domain.StaticFields.isTypeList;
 
@@ -30,6 +28,9 @@ import static com.veryworks.iyeongjun.hkapp.domain.StaticFields.isTypeList;
 public class TypeAdapter extends RecyclerView.Adapter<TypeAdapter.ViewHolder>{
 
     Context context;
+
+    String[] typeString = {"맛집","공원","레포츠","볼거리","쇼핑","숙박","유적지"};
+    String[] sectionString = {"강남구","강동구","강서구","광진구","동작구","마포구","서초구","성동구","송파구","영등포구","용산구"};
 
     public TypeAdapter(Context context) {
         this.context = context;
@@ -67,17 +68,22 @@ public class TypeAdapter extends RecyclerView.Adapter<TypeAdapter.ViewHolder>{
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
+
         }
 
         public void setPostion(int postion){this.postion = postion;}
 
         @OnClick(R.id.btnTypeImage)
         public void btnTypeImageTouched(){
-                if (isTypeList){
-
-                }else{
-
-                }
+            Intent intent = new Intent(context, ListActivity.class);
+            if (isTypeList){
+                intent.putExtra("setting","type");
+                intent.putExtra("content",typeString[postion]);
+            }else{
+                intent.putExtra("setting","section");
+                intent.putExtra("content",sectionString[postion]);
             }
+            context.startActivity(intent);
         }
+    }
 }

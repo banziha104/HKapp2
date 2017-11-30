@@ -18,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.SurfaceView;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -58,7 +59,8 @@ public class ARActivity extends AppCompatActivity implements SensorEventListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ar);
         ButterKnife.bind(this);
-
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, //상태바 제거
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         sensorManager = (SensorManager) this.getSystemService(SENSOR_SERVICE);
         cameraContainerLayout = (FrameLayout) findViewById(R.id.camera_container_layout);
         surfaceView = (SurfaceView) findViewById(R.id.surface_view);

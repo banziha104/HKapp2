@@ -3,21 +3,25 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_qr"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:title="QR코드 스캐너" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_ar"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:title="증강현실" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_setting"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:title="설정" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_doc"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="이용 약관" />
+        <item
+            android:id="@+id/nav_question"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="1:1 문의" />
     </group>
 
     <item android:title="Communicate">

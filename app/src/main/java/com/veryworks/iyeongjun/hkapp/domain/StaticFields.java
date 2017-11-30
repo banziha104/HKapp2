@@ -7,10 +7,15 @@ import android.content.ComponentName;
  */
 
 public class StaticFields {
-    public static boolean isTypeList = true;
+    public static boolean isTypeList = false;
     public static boolean isGetUserLocation = false;
     public static boolean isFirstTime = true;
     public static boolean isInitToogle = true;
+    public static boolean[] isInitData = {false,false,false,false};
+    public static boolean isAllDataRec = false;
     public static HKData hkDatas = new HKData();
+    public static BoardData boardData = new BoardData();
+    public static StarsData starsData = new StarsData();
+    public static UserData userData = new UserData();
     public static ComponentName serviceName;
 }

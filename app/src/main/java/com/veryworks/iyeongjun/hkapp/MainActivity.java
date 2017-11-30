@@ -1,26 +1,35 @@
 package com.veryworks.iyeongjun.hkapp;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
-import com.veryworks.iyeongjun.hkapp.Interface.TypeAndSectionSwapInterface;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 import com.veryworks.iyeongjun.hkapp.EventDriven.RxEventBus;
 import com.veryworks.iyeongjun.hkapp.EventDriven.RxPagerEventBus;
+import com.veryworks.iyeongjun.hkapp.HTTP.DataReceiver;
+import com.veryworks.iyeongjun.hkapp.Interface.TypeAndSectionSwapInterface;
 import com.veryworks.iyeongjun.hkapp.Util.UserLocation;
 import com.veryworks.iyeongjun.hkapp.adapter.PagerAdapter;
-import com.veryworks.iyeongjun.hkapp.domain.DataReceiver;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +47,7 @@ import static com.veryworks.iyeongjun.hkapp.domain.StaticDrawble.tabImage;
 import static com.veryworks.iyeongjun.hkapp.domain.StaticDrawble.tabSelectedImage;
 import static com.veryworks.iyeongjun.hkapp.domain.StaticFields.isTypeList;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends CustomFontAcitivity
         implements NavigationView.OnNavigationItemSelectedListener,TypeAndSectionSwapInterface {
     int curPos;
     DrawerLayout drawer;
@@ -230,13 +239,15 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_ar) {
+            Intent intent = new Intent(MainActivity.this, ARActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_qr) {
+            IntentIntegrator intentIntegrator = new IntentIntegrator(MainActivity.this);
+            intentIntegrator.initiateScan();
+        } else if (id == R.id.nav_doc) {
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_question) {
 
         } else if (id == R.id.nav_share) {
 
@@ -246,5 +257,32 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.END);
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        String url = "";
+        String name ="";
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
+        if(result != null){
+            if(result.getContents() == null){
+                sendSnack("취소 되었습니다");
+            }else{
+                if(!result.getContents().startsWith("http") || !result.getContents().startsWith("https")){
+                    url = "https://" + result.getContents();
+                }
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
+            }
+        }else {
+            Log.d("QRSCAN", result.toString());
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+        Log.d("MAINACTIVITY",result.getContents());
+
+    }
+    public void sendSnack(String str) {
+        Snackbar.make(getWindow().getDecorView().getRootView()
+                , str, Snackbar.LENGTH_LONG).show();
     }
 }

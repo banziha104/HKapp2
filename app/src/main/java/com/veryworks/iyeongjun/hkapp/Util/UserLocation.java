@@ -27,9 +27,7 @@ import retrofit2.Retrofit;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
-import static com.veryworks.iyeongjun.hkapp.domain.StaticFields.isFirstTime;
 import static com.veryworks.iyeongjun.hkapp.domain.StaticFields.isGetUserLocation;
-import static com.veryworks.iyeongjun.hkapp.domain.StaticFields.isInitToogle;
 
 
 /**

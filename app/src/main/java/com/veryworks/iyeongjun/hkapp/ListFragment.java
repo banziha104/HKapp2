@@ -13,8 +13,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.veryworks.iyeongjun.hkapp.Interface.SetBackgroundListFragment;
 import com.veryworks.iyeongjun.hkapp.EventDriven.RxEventBus;
+import com.veryworks.iyeongjun.hkapp.Interface.SetBackgroundListFragment;
 import com.veryworks.iyeongjun.hkapp.Util.CustomBitmapPool;
 import com.veryworks.iyeongjun.hkapp.adapter.ListAdapter;
 import com.veryworks.iyeongjun.hkapp.domain.Const;
@@ -22,7 +22,6 @@ import com.veryworks.iyeongjun.hkapp.domain.Const;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import jp.wasabeef.glide.transformations.BlurTransformation;
 import jp.wasabeef.glide.transformations.ColorFilterTransformation;
 
 import static com.veryworks.iyeongjun.hkapp.domain.StaticFields.hkDatas;
@@ -60,7 +59,6 @@ public class ListFragment extends Fragment implements SetBackgroundListFragment 
     private void fabClicked(int num) {
         listAdapter.notifyDataSetChanged();
     }
-
     private void setRecycler() {
         listAdapter = new ListAdapter(getActivity(),this,hkDatas);
         listRecycler.setAdapter(listAdapter);
@@ -79,8 +77,8 @@ public class ListFragment extends Fragment implements SetBackgroundListFragment 
         Glide
                 .with(getActivity())
                 .load(img)
-                .bitmapTransform(new BlurTransformation(getActivity(),new CustomBitmapPool(),20))
-                .bitmapTransform(new ColorFilterTransformation(new CustomBitmapPool(), Color.argb(100, 0, 0, 0)))
+                .crossFade(1000)
+                .bitmapTransform(new ColorFilterTransformation(new CustomBitmapPool(), Color.argb(150, 0, 0, 0)))
                 .into(imgListBack);
     }
 }

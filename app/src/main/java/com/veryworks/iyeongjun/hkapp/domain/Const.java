@@ -61,4 +61,17 @@ public class Const {
         public static final boolean IN_IMAGE = true;
         public static final boolean OUT_IMAGE = false;
     }
+    public static class NETWORK{
+        public static final String SERVER_URL = "http://ec2-52-78-202-182.ap-northeast-2.compute.amazonaws.com:80";
+        public static final String AWS_ACCESS_KEY_ID = "";
+        public static final String AWS_SECRET_ACCESS_KEY = "";
+        public static final String BUCKET_NAME = "ishkstorage";
+    }
+
+    public static class LIST_NUM{
+        public static final ListNum L_FOOD = new ListNum(0,"");
+    }
+    public static class LIST_S_NUM{
+
+    }
 }

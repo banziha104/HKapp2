@@ -24,7 +24,7 @@ import com.veryworks.iyeongjun.hkapp.domain.MarkerItem;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static com.veryworks.iyeongjun.hkapp.Util.MyUtil.convertTypeStringToPin;
+import static com.veryworks.iyeongjun.hkapp.Util.DataConverter.convertTypeStringToPin;
 import static com.veryworks.iyeongjun.hkapp.Util.UserLocation.currentUserLocation;
 import static com.veryworks.iyeongjun.hkapp.domain.StaticFields.hkDatas;
 
